@@ -13,16 +13,16 @@ class GrpcServer {
    private val logger = Logger.getLogger("GrpcServer")
    var server: Server = null
 
-   def runServer(ssd: ServerServiceDefinition): Unit = {
+   def runServer(ssd: ServerServiceDefinition, serviceName: String): Unit = {
       server = ServerBuilder
          .forPort(50051)
          .addService(ssd)
          .build()
-      logger.info("Going to start Hello World Service")
+      logger.info(s"Going to start ${serviceName} Service")
       server.start()
       Runtime.getRuntime.addShutdownHook(new Thread(){
          override def run(): Unit = {
-            logger.info("going to shutdown the Hello World Service")
+            logger.info(s"going to shutdown the ${serviceName} Service")
             GrpcServer.this.shutdown()
          }
       })

@@ -9,7 +9,7 @@ import scala.concurrent._
 
 object HelloWorldGrpcServer extends GrpcServer with App {
    val ssd = HelloWorldGrpc.bindService(new HelloGRPC(), ExecutionContext.global)
-   runServer(ssd)
+   runServer(ssd, "Hello World")
 }
 
 class HelloGRPC extends HelloWorldGrpc.HelloWorld {

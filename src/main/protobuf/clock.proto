@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package com.abhi.grpc;
+
+message TimeRequest{}
+message TimeResponse {
+    int64 currentTime = 1;
+}
+
+service Clock {
+    rpc StreamTime(TimeRequest) returns (stream TimeResponse);
+}
