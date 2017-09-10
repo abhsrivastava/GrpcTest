@@ -19,13 +19,10 @@ class GrpcServer {
          .addService(ssd)
          .build()
       logger.info(s"Going to start ${serviceName} Service")
+      sys.addShutdownHook {
+         GrpcServer.this.shutdown()
+      }
       server.start()
-      Runtime.getRuntime.addShutdownHook(new Thread(){
-         override def run(): Unit = {
-            logger.info(s"going to shutdown the ${serviceName} Service")
-            GrpcServer.this.shutdown()
-         }
-      })
       server.awaitTermination()
    }
 

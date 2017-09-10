@@ -14,6 +14,6 @@ object HelloWorldGrpcServer extends GrpcServer with App {
 
 class HelloGRPC extends HelloWorldGrpc.HelloWorld {
    override def sayHello(request: ToBeGreeted): Future[Greeting] = {
-      Future(Greeting(s"Hello World ${request.person}"))
+      Future.successful(Greeting(s"Hello World ${request.person}"))
    }
 }
