@@ -18,6 +18,6 @@ object ClockGrpcClient extends App {
       override def onCompleted(): Unit = println("closing observer")
       override def onNext(value: TimeResponse): Unit = println(s"received time ${new DateTime(value)}")
    }
-   stub.streamTime(TimeRequest(), observer)
+   stub.streamTime(TimeRequest(10), observer)
    StdIn.readLine()
 }

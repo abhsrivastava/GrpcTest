@@ -20,14 +20,11 @@ class GrpcServer {
          .build()
       logger.info(s"Going to start ${serviceName} Service")
       sys.addShutdownHook {
-         GrpcServer.this.shutdown()
+         logger.info("Going to shutdown Hello World Service")
+         server.shutdown()
       }
       server.start()
       server.awaitTermination()
    }
 
-   def shutdown() = {
-      logger.info("Going to shutdown Hello World Service")
-      server.shutdown()
-   }
 }
